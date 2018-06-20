@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_20_205955) do
+ActiveRecord::Schema.define(version: 2018_06_20_224440) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -79,7 +79,8 @@ ActiveRecord::Schema.define(version: 2018_06_20_205955) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.string "image_file_name", default: "Placeholder.png"
+    t.string "image_file_name"
+    t.text "description"
     t.index ["crust_id"], name: "index_pizzas_on_crust_id"
     t.index ["recipe_id"], name: "index_pizzas_on_recipe_id"
   end
