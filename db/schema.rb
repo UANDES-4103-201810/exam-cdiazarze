@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_20_195132) do
+ActiveRecord::Schema.define(version: 2018_06_20_205955) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2018_06_20_195132) do
   end
 
   create_table "crusts", force: :cascade do |t|
-    t.string "type"
+    t.string "mass"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 2018_06_20_195132) do
     t.integer "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "image_file_name", default: "Placeholder.png"
     t.index ["crust_id"], name: "index_pizzas_on_crust_id"
     t.index ["recipe_id"], name: "index_pizzas_on_recipe_id"
   end
@@ -95,6 +97,7 @@ ActiveRecord::Schema.define(version: 2018_06_20_195132) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

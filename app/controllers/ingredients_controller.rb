@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
         @ingredients=Ingredient.all
     end
     def new
-        @category = Category.new
+        @ingredient = Ingredient.new
     end
     
     def create
