@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3dcac4d-ebad-433e-bcb1-5dbc5e0284a8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/controllers/pizzas_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/pizzas_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/pizza.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/pizza.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/pizzas/_get_pizza_vertical.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pizzas/_get_pizza_vertical.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/pizzas/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pizzas/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,8 +42,8 @@
       <file leaf-file-name="_get_pizza_vertical.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/pizzas/_get_pizza_vertical.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="315">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
@@ -414,12 +408,12 @@
       <updated>1529524819330</updated>
       <workItem from="1529524820959" duration="386000" />
       <workItem from="1529525443100" duration="8264000" />
-      <workItem from="1529533747430" duration="2004000" />
+      <workItem from="1529533747430" duration="2111000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10654000" />
+    <option name="totallyTimeSpent" value="10761000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -676,8 +670,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pizzas/_get_pizza_vertical.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
