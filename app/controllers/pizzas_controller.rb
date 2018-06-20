@@ -1,4 +1,10 @@
 class PizzasController < ApplicationController
+
+  def show
+    @pizza =
+  end
+
+
   def new
     @pizzas = Pizza.New
   end

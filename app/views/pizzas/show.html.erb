@@ -1,0 +1,150 @@
+<div class="container">
+  <%if !@pizza.errors.empty?%><div class="alert alert-danger"><%= devise_error_messages! %></div><%end%>
+  <div class="row">
+    <aside class="visible-md visible-lg col-md-6">
+      <%=image_tag(@pizza.image_file_name, :class=>"thumb thumb-project pull-left style-img" )%>
+    </aside>
+    <div class="col-sm-12 col-md-4 col-md-offset-1">
+      <div class="row">
+        <h1 class="display-3 text-left text-uppercase font-weight-bold"><%= pizza.name %></h1>
+      </div>
+      <div class="row text-justify">
+        <%= Pizza.ingredients(pizza) %>
+      </div><br>
+      <div class="row text-center">
+        <button class="btn btn-success btn-lg">
+          <%= link_to "Donate!", new_project_user_fund_project_path(@project ,{:project => @project.id}  ), class:"white-button-text" %> <span class="glyphicon glyphicon-heart"></span>
+        </button>
+      </div><br>
+      <div class="row">
+        <h4>Earnings!</h4>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width:<%=@projectdata.amount_raised/@projectdata.goal*100%>%" aria-valuenow="<%=@projectdata.amount_raised%>" aria-valuemin="0" aria-valuemax=<%=@projectdata.goal%>></div>
+        </div>
+      </div>
+      <div class="row project-profile">
+        <p><%=number_to_currency @projectdata.amount_raised%> / <%=number_to_currency @projectdata.goal%></p>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-4 ">
+          <h4>Deadline: <br><small><%=@projectdata.deadline%></small></h4>
+        </div>
+        <div class="col-sm-12 col-md-4 ">
+          <h4>Delivery: <br><small><%= @projectdata.estimated_delivery_time%></small></h4>
+        </div>
+        <div class="col-sm-12 col-md-4 ">
+          <h4>Website: <br>
+            <small><%= @projectdata.website%></small>
+          </h4>
+        </div>
+      </div>
+      <div class="row">
+        <%if current_user?(@project.user) || current_user_admin?%>
+          <div class="col-sm-12 col-md-4 show-project-button">
+            <%= link_to "Edit Project!", edit_project_path(@project), class: "btn btn-success" %>
+          </div>
+          <div class="col-sm-12 col-md-4 show-project-button">
+            <%= link_to 'Delete Project', @project,
+                        method: :delete,
+                        data: {confirm: 'Are you sure?'},
+                        class: 'btn btn-danger' %>
+          </div>
+        <%end%>
+        <% if current_user_admin? %>
+          <div class="col-sm-12 col-md-4 show-project-button">
+            <%if @project.featured%>
+              <%= form_for @project do |p| %>
+                <%= p.hidden_field :featured, value:false %>
+                <%= p.hidden_field :on_project, value: true %>
+                <%= p.submit "Not featured", class: 'btn btn-danger' %>
+              <% end %>
+            <%else%>
+              <%= form_for @project do |p| %>
+                <%= p.hidden_field :featured, value:true %>
+                <%= p.hidden_field :on_project, value:true %>
+                <%= p.submit "Set as featured", class: 'btn btn-primary' %>
+              <% end %>
+            <%end%>
+          </div>
+        <% end %>
+      </div><br>
+      <div class="row edit-project-forms">
+        <%if !current_user.nil?%>
+          <div class="col-sm-12 col-md-6 show-project-button">
+            <% if Wishlist.user_wishlist?(current_user,@project) %>
+              <%=form_tag(:controller => "wishlists", :action => "create") do %>
+                <%= hidden_field_tag :project, params[:id] %>
+                <%= submit_tag "Add to Wishlist", class: "btn btn-primary" %>
+              <%end%>
+            <%else%>
+              <%@wishlist=Wishlist.wishlist(current_user,@project)%>
+              <%= link_to 'Remove from Wishlist', @wishlist,
+                          method: :delete,
+                          data: {confirm: 'Are you sure?'},
+                          class: 'btn btn-danger' %>
+            <%end%>
+          </div>
+        <%end%>
+      </div>
+
+    </div>
+  </div><br>
+  <div class="row">
+    <header class="page-header">
+      <h1 class="display-3 text-center">Who needs you?</h1>
+    </header>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <h3><strong>Story</strong></h3>
+      <%= markdown(@projectdata.description) %>
+    </div>
+    <div class="col-sm-3 col-sm-offset-1">
+      <div class="row">
+        <h3 class="text-center"><strong>The Organizer  </strong><span class="glyphicon glyphicon-user"></span></h3>
+      </div>
+      <%= render "users/get_user_vertical" , object:@user%>
+      <div class="row text-center btn-user-vertical" >
+        <%if params[:action] == 'edit' %>
+          <button type="button" class="btn btn-lg btn-primary" disabled>Profile</button>
+          <button type="button" class="btn btn-lg btn-success" disabled>Profile</button>
+        <%else%>
+          <%= link_to 'Profile', user_path(@user), class: 'btn btn-primary btn-lg' %>
+          <%= link_to 'Donate', new_project_user_fund_project_path(@project ,{:project => @project.id}  ), class: 'btn btn-success btn-lg' %>
+        <%end%>
+      </div>
+    </div>
+  </div><br>
+  <div class="row margin-top-20 border-top-grey">
+    <div class="col-sm-8">
+      <h3><strong>Donate throw Promises!</strong></h3>
+      <%if @promises.count > 0 %>
+        <%= render "promises/show_promise_horizontal" , object:@promises%>
+      <%else%>
+        <h4>This project doesn't have promises yet</h4>
+      <%end%>
+      <% if current_user?(@user) || current_user_admin?%>
+        <div class="row">
+          <%= link_to 'Create new Promise', new_promise_path(@project ,{:project => @project.id}), class: 'btn btn-primary' %>
+        </div>
+      <%end%>
+    </div>
+    <div class="col-sm-3 col-sm-offset-1">
+      <div class="row">
+        <h3 class="text-center"><strong>People who helped!</strong></h3>
+      </div>
+      <%if @founders.count > 0 %>
+        <div class="row round1 padding-15">
+          <%@founders.each do |founder|%>
+            <% if !UserFundProject.validate_last_donation?(founder, @project)%>
+              <%= render "users/founders_vertical" , object:founder%>
+            <%end%>
+          <%end%>
+        </div>
+      <%else%>
+        <h4>No donations yet, be the first!</h4>
+      <%end%>
+    </div>
+  </div>
+
+</div>

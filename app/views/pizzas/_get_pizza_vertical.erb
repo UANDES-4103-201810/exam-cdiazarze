@@ -3,8 +3,8 @@
     <div class="row">
       <section class="posts col-sm-12 col-md-9 col-md-offset-1">
         <article class="post clearfix">
+          <%= image_tag (pizza.image_file_name, class:"thumb pull-left style-img visible-md visible-lg") %>
           <h2 class="post-title"> <%= pizza.name%></h2>
-          <%= image_tag pizza.image_file_name, class:"thumb pull-left style-img visible-md visible-lg" %>
           <p class="post-contenido text-justify"> <%= number_to_currency Pizza.price(pizza)%></p>
           <div class="contener-botones">
             <div class="button-container">

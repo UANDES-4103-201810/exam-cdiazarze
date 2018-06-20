@@ -6,6 +6,9 @@ class Pizza < ApplicationRecord
   def self.price(pizza)
     Recipe.find(pizza.recipe.id).price + Crust.find(pizza.crust.id).price
   end
+  def self.ingredients(pizza)
+    @ingredients=RecipeIngredient.where(Recipe.find(pizza.recipe.id))
+  end
 
 
 end
